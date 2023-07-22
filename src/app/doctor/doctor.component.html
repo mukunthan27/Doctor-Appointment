@@ -1,0 +1,65 @@
+<div class="container card">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="card-body">
+    <p class="card-subtitle mb-2 text-body-secondary" style="text-align: center;">Doctor Form</p>
+    <div class="mb-3">
+      <label class="form-label">First name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="firstName"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Last name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="lastName"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Educational Qualification</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="educationalQualification"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Years of practice</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="yearsOfPractice"
+        required
+      />
+    </div>
+    <div style="text-align: center">
+      <button
+        type="submit"
+        [disabled]="!profileForm.valid"
+        class="btn bg-primary-subtle"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="card main-container" *ngIf="service.doctorDetail.length > 0">
+  <div class="card-body" *ngFor="let detail of service.doctorDetail">
+    <div class="card small-container">
+      <div class="card-body">
+        <h5 class="card-title">{{ detail.firstName }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+          {{ detail.lastName }}
+        </h6>
+        <p class="card-text">{{ detail.educationalQualification}}</p>
+        <p class="card-text">{{ detail.yearsOfPractice}}</p>
+      </div>
+    </div>
+  </div>
+</div>

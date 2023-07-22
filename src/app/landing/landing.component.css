@@ -1,0 +1,89 @@
+.card{
+    margin: 30px;
+}
+.row input{
+    width: 300px;
+}
+input{
+    cursor: pointer;
+}
+.row select{
+    width: 300px;
+    cursor: pointer;
+}
+option{
+    cursor: pointer;
+}
+.row .col{
+    margin: 10px;
+}
+.time-container{
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.time-card{
+    margin-top: 10px;
+    margin-right: 10px;
+    width: 200px;
+}
+.time-card label{
+    cursor: text;
+}
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.main-container{
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.small-container{
+    width: 300px;
+}
+.p-tag{
+    margin: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+@media screen and (max-width: 400px) {
+    .small-container{
+        width: 80%;
+    }
+    .main-container{
+        margin: 10px;
+        row-gap: 0px;
+        column-gap: 5px;
+    }
+    .row input{
+        width: 100%;
+    }
+    .row select{
+        width: 100%;
+    }
+    .row .col{
+        margin-right: 30px;
+    }
+}

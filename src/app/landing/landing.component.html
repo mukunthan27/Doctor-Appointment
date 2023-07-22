@@ -1,0 +1,159 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <div class="card-body">
+      <h3>Hi User!</h3>
+      <p class="card-title">welcome to our Doc site</p>
+      <br />
+      <p class="card-subtitle mb-2 text-body-secondary">
+        Please fill the Details to Book your Appointment
+      </p>
+      <br /><br />
+      <div class="row">
+        <div class="col">
+          <label class="form-label">Pick your date</label>
+          <input type="date" class="form-control" formControlName="dateOfAppointment" />
+        </div>
+        <div class="col">
+          <label class="form-label">Select your doctor</label>
+          <select
+            #teams
+            (change)="onSelected(teams.value)"
+            formControlName="doctorName"
+            class="form-select"
+            aria-label="Select your doctor"
+          >
+            <option
+              *ngFor="let detail of service.doctorDetail"
+              [value]="detail.firstName"
+            >
+              {{ detail.firstName }} {{ detail.lastName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        class="card"
+        *ngIf="selectedTeam != '' && selectedTeam != 'Pick your doctor'"
+      >
+        <div class="card-body">
+          <p class="card-title">Choose your timing</p>
+          <div class="time-container">
+            <div
+              class="border border-success p-2 mb-2 border-opacity-25 time-card"
+              *ngFor="let time of timing"
+            >
+              <input
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                class="form-check-input"
+                type="radio"
+                value="{{time.time}}"
+                formControlName="time"
+              />&nbsp;
+              <label
+                class="form-check-label"
+                for="{{ time.id }}"
+              >
+                {{ time.time }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Book your Appointment
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label">Enter patient mobile number</label>
+          <div class="form-group has-search">
+            <span class="bi bi-search form-control-feedback"></span>
+            <input
+              type="number"
+              #user
+              (keyup)="users(user.value)"
+              class="form-control"
+              placeholder="Search"
+            />
+          </div>
+          <div *ngIf="patientOptions.length > 0">
+            <div class="card" *ngFor="let detail of patientOptions">
+              <div class="card-body">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  value="{{detail.mobileNumber}}"
+                  formControlName = "patientDetails"
+                />
+                <h5 class="card-title form-check-label">
+                  {{ detail.firstName }}
+                </h5>
+                <h6
+                  class="card-subtitle mb-2 text-body-secondary form-check-label"
+                >
+                  {{ detail.lastName }}
+                </h6>
+                <p class="card-text form-check-label">
+                  {{ detail.mobileNumber }}
+                </p>
+                <p class="card-text form-check-label">{{ detail.address }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" data-bs-dismiss="modal" class="btn bg-primary-subtle">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<p *ngIf="service.selectedPatient.length > 0" class="p-tag">Patients with Doctors Appointment</p>
+
+<div class="card main-container" *ngIf="service.selectedPatient.length > 0">
+    <div
+      class="card-body"
+      *ngFor="let detail of service.selectedPatient"
+    >
+      <div class="card small-container">
+        <div class="card-body">
+          <h5 class="card-title">{{ detail.firstName }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">
+            {{ detail.lastName }}
+          </h6>
+          <p class="card-text">{{ detail.mobileNumber }}</p>
+          <p class="card-text">{{ detail.address }}</p>
+          <p class="card-text">{{ detail.dateOfAppointment }}</p>
+          <p class="card-text">{{ detail.doctorName }}</p>
+          <p class="card-text">{{ detail.time }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

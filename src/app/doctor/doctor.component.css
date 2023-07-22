@@ -1,0 +1,23 @@
+.container{
+    margin-top: 50px;
+    width: 300px;
+    border-radius: 4px;
+}
+.main-container{
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.small-container{
+    width: 300px;
+}
+@media screen and (max-width: 400px) {
+    .small-container{
+        width: 100%;
+    }
+}
